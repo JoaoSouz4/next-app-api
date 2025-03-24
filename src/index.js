@@ -7,7 +7,7 @@ const app = express();
 
 app.use(cors(
     {
-      origin: ['https://next-app-nu-neon.vercel.app/', 'http://localhost:3000'], // Permitir apenas este domínio
+      origin: ['https://next-app-nu-neon.vercel.app', 'http://localhost:3000'], // Permitir apenas este domínio
       methods: 'GET,POST,PUT,DELETE',
       allowedHeaders: 'Content-Type,Authorization'
     },
