@@ -23,7 +23,7 @@ class ClientController {
       }
     }
 
-    static async readClients(req, res){
+    static async read(req, res){
 
       try {
         const clients = await Client.find({});
@@ -40,7 +40,34 @@ class ClientController {
           isSuccess: true,
         })
       }
-    } 
+    }
+
+    static async delete(req, res){
+      try {
+        const { id } = req.params;
+
+        const deleteResult = await Client.deleteOne({_id: id});
+
+        if (deleteResult.deletedCount === 0) {
+          return res.status(404).json({
+            success: false,
+            message: "Cliente não encontrado.",
+          });
+        }
+
+        return res.status(200).json({
+          success: true,
+          message: "Cliente excluído com sucesso.",
+        });
+
+      } catch (error) {
+        res.status(500).json({
+          success: false,
+          message: "não foi possível concluir a operação",
+          data: error.message
+        })
+      }
+    }
 }
   
   export default ClientController;

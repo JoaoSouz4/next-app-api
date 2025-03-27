@@ -9,4 +9,5 @@ routes.post("/client", isClient, (req, res, next) => {
   next();
 }, ClientController.create);
 
-routes.get("/client", ClientController.readClients)
+routes.get("/client", ClientController.read)
+routes.delete('/client/:id', ClientController.delete)
