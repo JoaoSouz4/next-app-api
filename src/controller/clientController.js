@@ -68,6 +68,29 @@ class ClientController {
         })
       }
     }
+
+    static async createDevices(req, res){
+
+      try {
+        const { deviceName, clientId } = req.body;
+        const client = await Client.findById(clientId);
+ 
+        client.devices.push({
+          devicesName: deviceName,
+          process: []
+        });
+
+        await client.save();
+        res.status(200).json({
+          success: true,
+          message: 'Dispositivo criado com sucesso',
+          data: client
+        })
+      } catch (error) {
+          console.log(error)
+          res.status(400).json({error})
+      }
+    }
 }
   
   export default ClientController;

@@ -10,4 +10,7 @@ routes.post("/client", isClient, (req, res, next) => {
 }, ClientController.create);
 
 routes.get("/client", ClientController.read)
-routes.delete('/client/:id', ClientController.delete)
+routes.delete('/client/:id', ClientController.delete);
+
+
+routes.post('/client/device', ClientController.createDevices);
